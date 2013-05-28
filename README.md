@@ -4,6 +4,8 @@ nodejs-jsonrpc
 nodejs jsonrpc 2.0 server
 
 ```
+var Server = require('./server.js');
+
 var TestObject = function(){};
 
 TestObject.prototype.test = function(callback, param1, param2)
