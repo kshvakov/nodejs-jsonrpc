@@ -60,16 +60,11 @@ JsonRpcServer.prototype.execute = function(request, response, buffer)
 		response.end();
 	}
 
-	var args = [callback];
-
-	for (arg in data.params)
-	{
-		args.push(data.params[arg])
-	}
+	data.params.unshift(callback);
 
 	try
 	{
-		jsObject[data.method].apply(null, args);
+		jsObject[data.method].apply(null, data.params);
 	}
 	catch(error)
 	{
@@ -77,7 +72,6 @@ JsonRpcServer.prototype.execute = function(request, response, buffer)
 
     	return;
 	}
-
 }
 
 JsonRpcServer.prototype.handle = function(request, response)
