@@ -1,3 +1,5 @@
+"use strict";
+
 var http   = require('http');
 
 var JsonRpcServer = function(options)
@@ -70,7 +72,7 @@ JsonRpcServer.prototype.execute = function(request, response, buffer)
 	{
 		this.errorResponse(response, data.id, -32603, 'Internal JSON-RPC error: ' + error.toString());
 
-    	return;
+		return;
 	}
 }
 
@@ -128,4 +130,3 @@ JsonRpcServer.prototype.start = function()
 }
 
 exports.JsonRpcServer = JsonRpcServer;
-

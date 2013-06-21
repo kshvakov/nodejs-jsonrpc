@@ -11,7 +11,7 @@ TestObject.prototype.method1 = function(callback, arg1, arg2, arg3)
 
 	setTimeout(function()
 	{		 
-		callback.call(null, [
+		callback([
 				{'Method' : 'method1'},
 				{'Time'   : self.getTime()},
 				{'Arg1'   : arg1},
@@ -33,7 +33,7 @@ TestObject.prototype.method2 = function(callback, arg1, arg2)
 {
 	var self = this;
 
-	callback.call(null, [
+	callback([
 			{'Method' : 'method2'},
 			{'Time'   : self.getTime()},
 			{'Arg1'   : arg1},
@@ -51,3 +51,10 @@ var Server = new Server.JsonRpcServer({
 Server.registerObject(TestObject);
 
 Server.start();
+
+
+process.on('uncaughtException', function (err) 
+	{
+		console.log('Exception: ' + err.message);
+	}
+);
